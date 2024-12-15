@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # saphana-common-lib
 #
@@ -621,7 +622,7 @@ function get_local_sr_config() {
                 local gpKeys=""
                 gpKeys=$(echo --key=global.ini/system_replication/{actual_mode,mode,site_name,site_id})
                 hdbANSWER=$(HANA_CALL --timeout "$HANA_CALL_TIMEOUT" --cmd "python getParameter.py $gpKeys --sapcontrol=1" 2>&1)
-                [[ "$hdbANSWER" =~ "SAPCONTROL-OK: <begin>"(.*)"SAPCONTROL-OK: <end>" ]] && hdbANSWER="${BASH_REMATCH[1]}" || hdbANSWER=""
+                [[ "$hdbANSWER" =~ 'SAPCONTROL-OK: <begin>'(.*)'SAPCONTROL-OK: <end>' ]] && hdbANSWER="${BASH_REMATCH[1]}" || hdbANSWER=''
                 [[ "$hdbANSWER" =~ "/actual_mode"=([^$'\n']+) ]] && gSrMode=${BASH_REMATCH[1]}
                 # if 'actual_mode' is not available, fallback to 'mode'
                 if [ -z "$gSrMode" ]; then
@@ -682,7 +683,7 @@ function get_local_virtual_name() {
         for lI in "${listInstances[@]}"; do
             # InstInfo : HA1 - 00 - suse-01 - 753,patch1010,changelist2124070
             # bsc#1233972 - hostname may include dashes
-            if [[ "$lI" =~ "$SID - $InstanceNr - "([^ ]*)" -" ]]; then
+            if [[ "$lI" =~ "$SID - $InstanceNr - "([^ ]*)' -' ]]; then
                 gVirtName="${BASH_REMATCH[1]}"
                 break
             fi

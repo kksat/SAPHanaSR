@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # saphana-controller-lib
 #
@@ -56,8 +57,7 @@ function saphana_usage() {
     echo "usage: $0 ($methods)
 
     $0 manages two SAP HANA databases in system replication.
-
-    The 'start'        operation starts the HANA instance or bring the "clone instance" to a WAITING status
+    The 'start'        operation starts the HANA instance or bring the 'clone instance' to a WAITING status
     The 'stop'         operation stops the HANA instance
     The 'status'       operation reports whether the HANA instance is running
     The 'monitor'      operation reports whether the HANA instance seems to be working in multi-state it also needs to check the system replication status

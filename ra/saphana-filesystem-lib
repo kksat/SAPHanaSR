@@ -1,3 +1,4 @@
+#!/bin/bash
 # saphana-filesystem-lib
 #
 # Description:	Clone resource to check vitality of SAP HANA filesystem
