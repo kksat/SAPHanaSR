@@ -1,0 +1,3 @@
+[submodule "resource-agents"]
+	path = resource-agents
+	url = git@github.com:ClusterLabs/resource-agents.git
